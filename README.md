@@ -3,5 +3,3 @@
 
 Homework Assignment 1 Due Thursday
 
-
-Olivia is GORGEOUS
