@@ -8,9 +8,34 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+
+
 m <- matrix(data = c (1,2,3,4), nrow = 2, ncol = 2)
+m
 
+n <- matrix(data = c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3, byrow = FALSE)
+n
 
+o <- matrix(data = c(1, 2, 3, 4, 5, 6), nrow = 2, ncol = 3, byrow = TRUE)
+o
+
+v1 <- c(1, 2, 3, 4)
+v2 <- c(6, 7, 8, 9)
+m1 <- rbind(v1, v2)
+m1
+
+m2 <- cbind(v1, v2)
+m2
+
+a <- array(data = 1:90, dim = c(5, 6, 3))
+a
+
+v <- c("Four", "score", "and", "seven", "years", "ago", "our", "fathers", "brought", "forth", "on", "this", "continent","a", "new", "nation", "conceived", "in", "Liberty", "and", "dedicated", "to", "the", "proposition", "that", "all", "men", "are", "created", "equal")
+
+v
+
+v <- 1:29
+v[seq(from = 1, to = 29, by = 3)]
 
 
 
