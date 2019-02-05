@@ -222,7 +222,12 @@ new_df
 m <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 m
 as.data.frame(m)
-# STOP- rest of this challenge is incomplete!!!!! not sure how to these 3: As a data frame, coerce the second column to be logical-valued (Boolean) As a data frame, coerce the third column to be factor-valued When you are done, use the str() command to show the data type for each variable in your dataframe.
+as.character("V2")
+as.factor("V3")
+str(m)
+str("V2")
+str("V3")
+
 
 library(data.table)
 dt <- data.table(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
@@ -278,9 +283,6 @@ t$a  # returns NULL and gives a warning
 
 t <- tibble(a = 1:4, c = 1)  # this works fine... c is recycled
 t
-
-
-## MODULE 8
 ```
 
 ## R Markdown
