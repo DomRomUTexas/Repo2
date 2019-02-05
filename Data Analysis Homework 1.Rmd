@@ -142,25 +142,145 @@ Cheirogaleidae
 Lepilemuridae
 Indriidae
 Lemuridae
-Daubentoniidae")  # this is a vector of character string
-b <- FALSE  # this is a boolean variable
-l <- list(s,b)
-class(s)
+Daubentoniidae") 
+A <- list("Primates")
+B <- list("Haplorhini, Strepsirhini")
+C <- list("Anthropoidea, Tarsioidea")
+D <- list("Lorisoidea, Lemuroidea")
+E <- list("Platyrrhini, Cattarhini")
+F <- list("Cebidae, Atelidae, Pitheciidae")
+G <- list("Cercopithecidae, Hylobatidae, Hominidae")
+H <- list("Tarsiidae")
+I <- list("Lorisidae, Galagidae")
+J <- list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
+PRIMATE <- list (A,B,C,D,E,F,G,H,I,J)
+PRIMATE
+
+
+df <- data.frame(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
+    community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
+    sex = c("M", "M", "M", "F", "F"), age = c(42, 40, 33, 28, 31))
+df
+
+df <- read.csv(file = "~/Desktop/R-Data-Analysis/randompeople.csv", sep = ",", header = TRUE, 
+    stringsAsFactors = FALSE)
+df
+# only print select columns of this data frame head() means we will also
+# only print the first several rows
+head(df[, c(1, 3, 4, 11, 12)])
+str(df)
+df[, 3]
+str(df[, 3])
+df$name.last
+str(df$name.last)
+str(df[["name.last"]])
+df[3]
+str(df[3])
+df["name.last"]
+str(df["name.last"])
+df <- cbind(df, id = c(1:20))
+df <- cbind(df, school = c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", 
+    "UT", "UT", "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", 
+    "A&M", "UT", "Texas State", "A&M"))
+head(df)
+
+df$school <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT", "UT", 
+    "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", "A&M", "UT", 
+    "Texas State", "A&M")
+head(df)
+
+df[["school"]] <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT", 
+    "UT", "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", "A&M", 
+    "UT", "Texas State", "A&M")
+head(df)
+
+new_df <- df[df$school == "UT", ]
+new_df
+
+df$school == "UT"
+
+new_df <- df[df$school == "UT" & df$gender == "female", ]
+new_df
+
+new_df <- df[df$school == "UT" | df$gender == "female", ]
+new_df
+
+new_df <- df[df$school == "UT", c("name.last", "name.first", "school")]
+new_df
+
+new_df <- df[, c("name.last", "name.first", "school")]
+new_df
+
+new_df <- df[, c(1, 4, 3)]
+new_df
+
+new_df <- df[, -c(1, 2, 5:18)]
+new_df
 
 
 # Challenge 4
+m <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
+m
+as.data.frame(m)
+# STOP- rest of this challenge is incomplete!!!!! not sure how to these 3: As a data frame, coerce the second column to be logical-valued (Boolean) As a data frame, coerce the third column to be factor-valued When you are done, use the str() command to show the data type for each variable in your dataframe.
 
+library(data.table)
+dt <- data.table(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
+    community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
+    sex = c("M", "M", "M", "F", "F"), age = c(42, 40, 33, 28, 31))
+dt
 
+str(dt)
 
+df <- data.frame(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
+    community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
+    sex = c("M", "M", "M", "F", "F"), age = c(42, 40, 33, 28, 31))
+df
 
+str(df)
+
+dt[sex == "M"]  # filter for sex = 'M' in a data table
+
+df[df$sex == "M", ]  # filter for sex = 'M' in a data frame
+
+dt[1:2]  # return the first two rows of the data table
+
+df[1:2, ]  # return the first two rows of the data table
+
+dt[, sex]  # returns the variable 'sex'
+
+str(dt[, sex])  # sex is a CHARACTER vector
+
+df[, c("sex")]  # returns the variable 'sex'
+
+str(df[, c("sex")])  # sex is a FACTOR with 2 levels
+
+library(tibble)
+
+t <- tibble(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
+    community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
+    sex = c("M", "M", "M", "F", "F"), age = c(42, 40, 33, 28, 31))
+t
+
+str(t)
+
+t[, "age"]
+
+class(t[, "age"])
+
+df[, "age"]
+
+class(df[, "age"])
+
+df$a  # returns df$age
+
+t$a  # returns NULL and gives a warning
+
+t <- tibble(a = 1:4, c = 1)  # this works fine... c is recycled
+t
 
 
 ## MODULE 8
-
-
-
-
-
 ```
 
 ## R Markdown
