@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-
+## MODULE 7
 
 m <- matrix(data = c (1,2,3,4), nrow = 2, ncol = 2)
 m
@@ -120,7 +120,7 @@ l[["matrix"]][3, 5]
 
 
 # Challenge 3
-s <- c("Primates
+s <- list("Primates
 Haplorhini
 Anthropoidea
 Platyrrhini
@@ -146,6 +146,17 @@ Daubentoniidae")  # this is a vector of character string
 b <- FALSE  # this is a boolean variable
 l <- list(s,b)
 class(s)
+
+
+# Challenge 4
+
+
+
+
+
+
+## MODULE 8
+
 
 
 
