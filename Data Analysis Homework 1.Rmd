@@ -155,6 +155,30 @@ I <- list("Lorisidae, Galagidae")
 J <- list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
 PRIMATE <- list (A,B,C,D,E,F,G,H,I,J)
 PRIMATE
+#PRIMATE
+    + Haplorhini
+        -Anthropoidea
+            + Platyrrhini
+                -Cebidae
+                -Atelidae
+                -Pitheciidae
+            + Cattarhini
+                -Cercopithecidae
+                -Hylobatidae
+                -Hominidae
+            + Tarsioidea
+                -Tarsiidae
+        -Strepsirrhini
+            + Lorisoidea
+                -Lorisidae
+                -Galagidae
+            + Lemuroidea
+                -Cheirogalidae
+                -Lepilemuridae
+                -Indriidae
+                -Lemuridae
+                -Daubentoniidae
+
 
 # how to coerce into a dataframe, and how to pick rows/columns out of the dataframe. 
 df <- data.frame(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
