@@ -197,18 +197,29 @@ df[["school"]] <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT",
     "UT", "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", "A&M", 
     "UT", "Texas State", "A&M")
 head(df)
-new_df <- df[df$school == "UT", ]
+
+# filtering rows of a dataframe
+new_df <- df[df$school == "UT", ] #return a vector equal to length of data frame                                     where school equals UT. Shows all columns                                       where school equals UT.
 new_df
+
 df$school == "UT"
-new_df <- df[df$school == "UT" & df$gender == "female", ]
+new_df <- df[df$school == "UT" & df$gender == "female", ] # all females that go                                                             to UT.
 new_df
-new_df <- df[df$school == "UT" | df$gender == "female", ]
+
+new_df <- df[df$school == "UT" & df$gender != "female", ] # all males that go                                                               to UT. != means not                                                             equal to.
 new_df
-new_df <- df[df$school == "UT", c("name.last", "name.first", "school")]
+
+new_df <- df[df$school == "UT" | df$gender == "female", ] # school is UT OR                                                                 gender is female.
 new_df
+
+#select columns of a dataframe
+new_df <- df[df$school == "UT", c("name.last", "name.first", "school")] # school                                      is UT but only pulling out these 3 columns,                                     can also use column number instead of name. 
+new_df
+
 new_df <- df[, c("name.last", "name.first", "school")]
 new_df
-new_df <- df[, -c(1, 2, 5:18)]
+
+new_df <- df[, -c(1, 2, 5:18)] # minus(-)sign says pull out all columns but...
 new_df
 
 
@@ -220,7 +231,7 @@ df$v2 <- as.character(df$V2)
 df$v3 <- as.factor(df$V3)
 str(df)
 
-
+# Data tables and Tibbles are common Data-frame like structures, uses much simpler syntax than the traditional dataframe, yay. 
 library(data.table)
 dt <- data.table(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
     community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
@@ -275,6 +286,7 @@ t$a  # returns NULL and gives a warning
 
 t <- tibble(a = 1:4, c = 1)  # this works fine... c is recycled
 t
+
 ```
 
 ## R Markdown
