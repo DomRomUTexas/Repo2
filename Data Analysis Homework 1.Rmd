@@ -156,7 +156,7 @@ J <- list("Cheirogaleidae, Lepilemuridae, Indriidae, Lemuridae, Daubentoniidae")
 PRIMATE <- list (A,B,C,D,E,F,G,H,I,J)
 PRIMATE
 
-
+# how to coerce into a dataframe, and how to pick rows/columns out of the dataframe. 
 df <- data.frame(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
     community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 
     sex = c("M", "M", "M", "F", "F"), age = c(42, 40, 33, 28, 31))
@@ -167,7 +167,10 @@ df <- read.csv(file = "~/Desktop/R-Data-Analysis/randompeople.csv", sep = ",", h
 df
 # only print select columns of this data frame head() means we will also
 # only print the first several rows
+head(df)
+tail(df)
 head(df[, c(1, 3, 4, 11, 12)])
+tail(df[, c(1, 3, 4, 11, 12)])
 str(df)
 df[, 3]
 str(df[, 3])
@@ -175,45 +178,36 @@ df$name.last
 str(df$name.last)
 str(df[["name.last"]])
 df[3]
+df[,4:6]
 str(df[3])
 df["name.last"]
 str(df["name.last"])
 df <- cbind(df, id = c(1:20))
-df <- cbind(df, school = c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", 
+
+# How to add a column to your dataframe. 
+df <- cbind(df, school = c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech",
     "UT", "UT", "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", 
     "A&M", "UT", "Texas State", "A&M"))
 head(df)
-
-df$school <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT", "UT", 
+df$school <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT", "UT",
     "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", "A&M", "UT", 
     "Texas State", "A&M")
 head(df)
-
 df[["school"]] <- c("UT", "UT", "A&M", "A&M", "UT", "Rice", "Texas Tech", "UT", 
     "UT", "Texas State", "A&M", "UT", "Rice", "UT", "A&M", "Texas Tech", "A&M", 
     "UT", "Texas State", "A&M")
 head(df)
-
 new_df <- df[df$school == "UT", ]
 new_df
-
 df$school == "UT"
-
 new_df <- df[df$school == "UT" & df$gender == "female", ]
 new_df
-
 new_df <- df[df$school == "UT" | df$gender == "female", ]
 new_df
-
 new_df <- df[df$school == "UT", c("name.last", "name.first", "school")]
 new_df
-
 new_df <- df[, c("name.last", "name.first", "school")]
 new_df
-
-new_df <- df[, c(1, 4, 3)]
-new_df
-
 new_df <- df[, -c(1, 2, 5:18)]
 new_df
 
