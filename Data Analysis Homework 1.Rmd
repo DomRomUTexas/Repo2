@@ -64,7 +64,7 @@ v <- 1:30
 v[seq(from = 1, to = 30, by = 3)] 
 
 
-# Challenge 1
+# CHALLENGE 1
 library(stringr)
 x <- c("Four score and seven years ago our fathers brought forth on this continent a new nation conceived in Liberty and dedicated to the proposition that all men are created equal")
 strsplit(x, split, fixed = FALSE, perl = FALSE, useBytes = FALSE)
@@ -76,7 +76,7 @@ x3 <- x_split [seq(from = 1, to = 30, by = 3)]
 x3
 
 
-# Challenge 2
+# CHALLENGE 2
 m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
 m
 x <- m[4, 5]
@@ -119,7 +119,7 @@ l[[2]][3, 5]
 l[["matrix"]][3, 5]
 
 
-# Challenge 3
+# CHALLENGE 3
 s <- list("Primates
 Haplorhini
 Anthropoidea
@@ -223,7 +223,7 @@ new_df <- df[, -c(1, 2, 5:18)] # minus(-)sign says pull out all columns but...
 new_df
 
 
-# Challenge 4
+# CHALLENGE 4
 m <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 m
 df <- as.data.frame(m)

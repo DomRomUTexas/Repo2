@@ -8,7 +8,16 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-# Module 8
+# Module 8- PULLING DATA INTO R!
+
+library(readxl)
+
+f <- "~/Desktop/R-Data-Analysis/tonyfile.xlsx"
+d <- read_excel(f, sheet=1, col_names=TRUE)
+head(d)
+str(d)
+
+
 
 
 
