@@ -221,12 +221,10 @@ new_df
 # Challenge 4
 m <- matrix(data = c(3, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), nrow = 5, ncol = 3, byrow = TRUE)
 m
-as.data.frame(m)
-as.character("V2")
-as.factor("V3")
-str(m)
-str("V2")
-str("V3")
+df <- as.data.frame(m)
+df$v2 <- as.character(df$V2)
+df$v3 <- as.factor(df$V3)
+str(df)
 
 
 library(data.table)
