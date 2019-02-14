@@ -179,7 +179,7 @@ PRIMATE
                 -Lemuridae
                 -Daubentoniidae
 
-
+## try it this way: Pl <- list (c("cebidae", "etc")) then names (Pl) <- Platyrrhini
 # how to coerce into a dataframe, and how to pick rows/columns out of the dataframe. 
 df <- data.frame(firstName = c("Rick", "Negan", "Dwight", "Maggie", "Michonne"), 
     community = c("Alexandria", "Saviors", "Saviors", "Hiltop", "Alexandria"), 

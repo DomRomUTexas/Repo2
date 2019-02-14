@@ -5,26 +5,41 @@ date: "2/11/2019"
 output: html_document
 ---
 
+## Remember to use codeblocks!! So results show in rmd. '''{r} code ''' don't include text inside codeblocks.
+
+# Be sure to print() so that it shows up in html/rmd.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown
 
-```
+```{r}
+
 library(tidyverse)
 library(curl)
+library(summarytools)
+library(GGally)
+library(dataMaid)
+library(psych)
 
 df <- read.csv(file = "~/Desktop/R-Data-Analysis/countrydata.csv", sep = ",", header = TRUE, 
     stringsAsFactors = FALSE)
 df
+
 df <- read.csv(file = "~/Desktop/R-Data-Analysis/Kamilar.csv", sep = ",", header = TRUE, 
     stringsAsFactors = FALSE)
 df
 
 f <- curl("https://raw.githubusercontent.com/difiore/ADA-2019/master/Country-Data-2016.csv")
 d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
-d <- as.tibble(d)  # I like tibbles!
+d <- as.tibble(d)  
+
+f <- ("~/Desktop/R-Data-Analysis/countrydata.csv")
+d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+d <- as_tibble(d) 
+
 head(d)
 
 summary(d)
@@ -38,16 +53,35 @@ d[1:10, ]
 d <- d[order(d$density), ]
 d[1:10, ]
 
+str(d)
+
+?order()
+
+s <- d[order(d$population, decreasing=TRUE), ]
+
+s <- s[1:20, ]
+
 s <- d[grep(pattern = "^[A-F]", d$country), ]
 summary(s)
 
-library(skimr)
-skim(d)
-
 library(summarytools)
+
+view(dfSummary(d, style = "grid", plain.ascii = FALSE))
 
 library(dataMaid)
 
+library(summarytools)
+s <- descr(d, style = "rmarkdown", transpose = TRUE)
+
+s %>% summarytools::view()
+
+s <- dfSummary(d, style = "grid", plain.ascii = FALSE)
+s %>% summarytools::view()
+detach(package:summarytools)
+
+library(dataMaid)
+
+makeDataReport(d, output = "html", file = "~/Desktop/dataMaid-output.Rmd", replace = TRUE)
 detach(package:dataMaid)
 
 d$log_population <- log(d$population)
@@ -63,18 +97,8 @@ barplot(d$population)
 barplot(d$area)
 
 dotchart(d$population)
-dotchart(d$area)
+dotchart(d$area) 
 
-# First, we use `tidyr::gather()` to convert our data from wide to long
-# format
-
-# d_long <- gather(d, key=variable, value=value,
-# c('log_population','log_area')) # uncomment this to look at a different
-# set of variables
-
-# d_long <- gather(d, key=variable, value=value,
-# c('mammals','birds','reptiles','fishes')) # uncomment this to look at a
-# different set of variables
 
 d_long <- gather(d, key = variable, value = value, c("birthrate", "deathrate", 
     "life_expect"))
@@ -94,10 +118,13 @@ p <- ggplot(data = d_long, aes(x = factor(0), y = value)) + geom_violin(na.rm = 
     na.rm = TRUE) + facet_grid(. ~ variable) + geom_rug(sides = "l")
 p
 
+```
+
 # CHALLENGE 1
 
-par(mfrow = c(1, 2))  # gives us two panels
-attach(d)  # lets us use variable names without specifing the data frame!
+```{r}
+par(mfrow = c(1, 2))  
+attach(d)  
 
 hist(log(population), freq = FALSE, col = "red", main = "Plot 1", xlab = "log(population size)", 
     ylab = "density", ylim = c(0, 0.2))
@@ -108,7 +135,7 @@ hist(log(area), freq = FALSE, col = "red", main = "Plot 2", xlab = "log(area)",
     ylab = "density", ylim = c(0, 0.2))
 abline(v = mean(log(area), na.rm = TRUE))
 
-par(mfrow = c(1, 1))  # set up one panel and redraw the log(population) histogram
+par(mfrow = c(1, 1))  
 hist(log(population), freq = FALSE, col = "white", main = "My Plot with Mean and Density", 
     xlab = "log(population size)", ylab = "density", ylim = c(0, 0.2))
 abline(v = mean(log(population), na.rm = TRUE), col = "blue")
@@ -146,11 +173,11 @@ plot(x = log(Body_mass_female_mean), y = log(Brain_Size_Female_Mean))
 detach(d)
 
 p <- ggplot(data = d, aes(x = log(Body_mass_female_mean), y = log(Brain_Size_Female_Mean), 
-    color = factor(Family)))  # first, we build a plot object and color points by Family
-p <- p + xlab("log(Female Body Mass)") + ylab("log(Female Brain Size)")  # then we modify the axis labels
-p <- p + geom_point(na.rm = TRUE)  # then we make a scatterplot
-p <- p + theme(legend.position = "bottom", legend.title = element_blank())  # then we modify the legend
-p  # and, finally, we plot the object
+    color = factor(Family)))  
+p <- p + xlab("log(Female Body Mass)") + ylab("log(Female Brain Size)")  
+p <- p + geom_point(na.rm = TRUE) 
+p <- p + theme(legend.position = "bottom", legend.title = element_blank()) 
+p  
 
 p <- p + facet_wrap(~Family, ncol = 4)
 p <- p + theme(legend.position = "none")
@@ -170,19 +197,19 @@ aggregate(x = d["Body_mass_female_mean"], by = d["Family"], FUN = "mean", na.rm 
 
 library(dplyr)
 s <- filter(d, Family == "Hominidae" & Mass_Dimorphism > 2)
-head(s)  # filtering a data frame for certain rows...
+head(s)  
 
-s <- select(d, Family, Genus, Body_mass_male_mean)  # selecting specific columns...
+s <- select(d, Family, Genus, Body_mass_male_mean)  
 head(s)
 
-s <- arrange(d, Family, Genus, Body_mass_male_mean)  # rearranging a data frame...
+s <- arrange(d, Family, Genus, Body_mass_male_mean) 
 head(s)
 
 s <- rename(d, Female_Mass = Body_mass_female_mean)
-head(s$Female_Mass)  # renaming columns...
+head(s$Female_Mass)  
 
 s <- mutate(d, Binomial = paste(Genus, Species, sep = " "))
-head(s$Binomial)  # and adding new columns...
+head(s$Binomial)  
 
 s <- summarise(d, avgF = mean(Body_mass_female_mean, na.rm = TRUE), avgM = mean(Body_mass_male_mean, 
     na.rm = TRUE))
